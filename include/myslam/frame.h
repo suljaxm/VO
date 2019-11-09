@@ -37,6 +37,9 @@ public:
     SE3                            T_c_w_;      // transform from world to camera
     Camera::Ptr                    camera_;     // Pinhole RGBD Camera model 
     Mat                            color_, depth_; // color and depth image 
+    // std::vector<cv::KeyPoint>      keypoints_;  // key points in image
+    // std::vector<MapPoint*>         map_points_; // associated map points
+    bool                           is_key_frame_;  // whether a key-frame
     
 public: // data members 
     Frame();
@@ -51,6 +54,8 @@ public: // data members
     
     // Get Camera Center
     Vector3d getCamCenter() const;
+    
+    void setPose( const SE3& T_c_w );
     
     // check if a point is in this frame 
     bool isInFrame( const Vector3d& pt_world );
